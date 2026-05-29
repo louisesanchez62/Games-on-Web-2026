@@ -28,7 +28,7 @@ export class Casino {
   }
 
   async init() {
-    const result = await SceneLoader.ImportMeshAsync('', '/assets/', 'casino.glb', this.scene);
+    const result = await SceneLoader.ImportMeshAsync('', '/public/', 'casino.glb', this.scene);
     this.casinoMesh = result.meshes[0];
 
     const safetyFloor = MeshBuilder.CreateBox(

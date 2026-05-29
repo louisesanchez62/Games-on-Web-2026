@@ -52,7 +52,7 @@ export class CardAssetLibrary {
     if (CardAssetLibrary._meshSources) return CardAssetLibrary._meshSources;
     if (!CardAssetLibrary._loadPromise) {
       CardAssetLibrary._loadPromise = SceneLoader.ImportMeshAsync(
-        '', '/assets/', 'playing_cards.glb', scene
+        '', '/public/', 'playing_cards.glb', scene
       ).then((result) => {
         const meshSources = new Map();
 

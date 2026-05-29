@@ -41,7 +41,7 @@ export class HUD {
     this.chipPanel.color = 'transparent';
     this.adt.addControl(this.chipPanel);
 
-    this.chipIcon = new Image('chipIcon', '/assets/jeton.png');
+    this.chipIcon = new Image('chipIcon', '/public/jeton.png');
     this.chipIcon.width = '34px';
     this.chipIcon.height = '34px';
     this.chipPanel.addControl(this.chipIcon);
