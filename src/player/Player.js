@@ -35,7 +35,7 @@ export class Player {
     this.visualPivot.position = new Vector3(0, -0.9, 0);
 
     // Mesh visuel + anims du glb
-    const result = await SceneLoader.ImportMeshAsync('', '/public/', 'player.glb', this.scene);
+    const result = await SceneLoader.ImportMeshAsync('', '/', 'player.glb', this.scene);
     this.visual = result.meshes[0];
     this.visual.parent = this.visualPivot;
     result.animationGroups.forEach(ag => this.anims[ag.name] = ag);
