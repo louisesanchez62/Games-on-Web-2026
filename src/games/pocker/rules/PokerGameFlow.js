@@ -9,7 +9,6 @@ const HERO_ID = 'vous';
 const MAX_OPPONENTS = 6;
 const AI_DECISION_DELAY_MS = 220;
 const AI_SIMULATIONS = 600;
-const POKER_STARTING_STACK = 200;
 const SMALL_BLIND = 5;
 const BIG_BLIND = 10;
 const AI_PROFILES = ['tight', 'aggressive', 'loose', 'standard', 'tight', 'aggressive'];
@@ -60,10 +59,11 @@ export class PokerGameFlow {
   newRound() { 
     this._clearPending(); 
     if (ChipWallet.state.won) return this._showWonState(); 
+    const startingStack = Math.max(0, ChipWallet.state.chips); 
     const playerIds = [HERO_ID, ...Array.from({ length: this.game.opponentCount }, (_, index) => `IA ${index + 1}`)]; 
-    this.game.round = new PokerRound({ playerIds, startingStack: POKER_STARTING_STACK, smallBlind: SMALL_BLIND, bigBlind: BIG_BLIND }); 
+    this.game.round = new PokerRound({ playerIds, startingStack, smallBlind: SMALL_BLIND, bigBlind: BIG_BLIND }); 
     this.game.round.startNew(); 
-    this._applyHeroStackDelta(POKER_STARTING_STACK); 
+    this._applyHeroStackDelta(startingStack); 
     this.game.ui.setSelectorEnabled(false); 
     this.game.ui.setSelectorVisible(false); 
     this.game.ui.setActionsVisible(true); 
@@ -357,7 +357,7 @@ _getHero() {
 _getHeroStack() {
   return (
     this._getHero()?.stack ??
-    POKER_STARTING_STACK
+    ChipWallet.state.chips
   );
 }
 
